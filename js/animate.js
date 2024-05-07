@@ -1,0 +1,11 @@
+const burger = document.querySelector("img[src = 'pictures/menu_berger.png']")
+const contactIcon = document.querySelector("img[src = 'pictures/contact_icon.png'")
+const contactTitle = document.querySelector("a[ href = './index.html']")
+const searchZone = document.querySelector("input[name = 'search']")
+
+burger.classList.add('alignDimine')
+contactIcon.classList.add('alignDimine')
+contactTitle.classList.add('bigger')
+searchZone.classList.add('goodLooking')
+searchZone.setAttribute("placeHolder","Rechercher")
+burger.classList.add('goodEffects')
