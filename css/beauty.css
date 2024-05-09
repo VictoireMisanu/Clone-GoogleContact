@@ -8,7 +8,8 @@ a{
 }
 .ordered{
     display: flex;
-    justify-content: space-between;
+    width: 100%;
+    /* justify-content: space-between; */
 }
 ::placeholder, label{
     font-size: 1.2rem;
@@ -88,10 +89,18 @@ a{
 .sidenav{
     display: flex;
     flex-direction: column;
-    max-width: 10%;
+    width: 30%;
     margin-top: 2%;
     gap: 20px;
     transition: all 1.5s;
+    
+}
+.allContacts{
+    width: 70%;
+    margin-top: 2%;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 10px;
 }
 input[placeholder ="Créer un contact"]{
     display: flex;
@@ -179,5 +188,31 @@ input[placeholder ="Créer un contact"]{
     transition: all 1.5s;
 }
 .takesTheWholePlace{
-    max-width: 100%;
+    width: 100%;
+    transition: 1.5s;
+}
+
+/* .allContacts{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+} */
+
+.styleTable{
+   
+    border : none;
+    /* border-collapse: collapse; */
+    /* width: 90%; */
+    color: black;
+    text-align: justify;
+    /* margin-top: 70px; */
+    font-size: 1rem;
+}
+.styleBorder {
+    
+    /* padding : 20px; */
+    border : 1px solid silver
+    
 }
