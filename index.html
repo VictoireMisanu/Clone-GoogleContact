@@ -10,14 +10,36 @@
 <body>
     <header>
         <div class="linksToTheMainPage">
-            <div class="burgerContainer"><a href="#"><img src="pictures/menu_berger.png" alt=""></a></div>
+            <div class="burgerContainer"><a href="#">
+                <svg width="30" height="30" id="icoOpen">
+                    <path d="M0,5 30,5" stroke="#000" stroke-width="5"/>
+                    <path d="M0,14 30,14" stroke="#000" stroke-width="5"/>
+                    <path d="M0,23 30,23" stroke="#000" stroke-width="5"/>
+                </svg>
+                </a>
+            </div>
             <a href="#"><img src="pictures/contact_icon.png" alt=""></a>
             <a href="./index.html">Contacts</a>
         </div>
         <div class="search">
+            <img src="pictures/searchIcon.jpg" alt="">
             <input type="text" name="search" id="search_zone">
         </div>
     </header>
+    <main>
+        <div id="sideNavigation" class="sidenav">
+            <a href="#" class="createContact"><svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg>Créer un Contact</a>
+            <a href="#" class="contactList"><svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="black" stroke="black" stroke-linecap="round" stroke-linejoin="round" d="M9 9.5v-2a3 3 0 1 1 6 0v2a3 3 0 0 1-1.5 2.599v1.224a1 1 0 0 0 .629.928l2.05.82A3.693 3.693 0 0 1 18.5 18.5h-13c0-1.51.92-2.868 2.321-3.428l2.05-.82a1 1 0 0 0 .629-.929v-1.224A2.999 2.999 0 0 1 9 9.5"/></svg>Contacts <small>0</small></a>
+            <a href="#" class="frequentList"><svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="black" d="M13.5 8H12v5l4.28 2.54l.72-1.21l-3.5-2.08zM13 3a9 9 0 0 0-9 9H1l3.96 4.03L9 12H6a7 7 0 0 1 7-7a7 7 0 0 1 7 7a7 7 0 0 1-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.9 8.9 0 0 0 13 21a9 9 0 0 0 9-9a9 9 0 0 0-9-9"/></svg>Fréquents</a>
+            <a href="#" class="libelle">Libellé <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg></a>
+            <a href="#" class="labels"><svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="black" d="M4 15V9h8V4.16L19.84 12L12 19.84V15z"/></svg>Famille <small>0</small></a>
+            <a href="#" class="labels"><svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="black" d="M4 15V9h8V4.16L19.84 12L12 19.84V15z"/></svg>Eglise <small>0</small></a>
+            <a href="#" class="labels"><svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="black" d="M4 15V9h8V4.16L19.84 12L12 19.84V15z"/></svg>Unikin <small>0</small></a>
+            <a href="#" class="labels"><svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="black" d="M4 15V9h8V4.16L19.84 12L12 19.84V15z"/></svg>Kadea <small>0</small></a>
+        </div>
+
+        <div class="allContacts"></div>
+    </main>
 
 
     <script src="js/animate.js"></script>
