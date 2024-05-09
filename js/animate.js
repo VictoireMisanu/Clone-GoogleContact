@@ -7,8 +7,11 @@ const header = document.querySelector("header")
 const btnCreateContact = document.querySelector("a[class = 'createContact']")
 const btnContactList = document.querySelector("a[ class = 'contactList']")
 const sideNav = document.querySelector("div[class = 'sidenav']")
+const allContacts = document.querySelector("div[class = 'allContacts']")
+const mainSection = document.querySelector("main")
 
 
+mainSection.classList.add('ordered')
 searchIcon.classList.add('alignDimine')
 burger.classList.add('alignDimine')
 contactIcon.classList.add('alignDimine')
@@ -27,3 +30,5 @@ burger.addEventListener("click", function(){
         sideNav.classList.add('pushToTheLeftSide')
     }
 })
+
+allContacts.innerHTML = `<div>Bonjour</div>`
