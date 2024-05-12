@@ -103,6 +103,8 @@ a{
     border-radius: 10px;
 }
 .styleCreateContact{
+    display: flex;
+    flex-direction: column;
     width: 70%;
     margin-top: 2%;
     background-color: rgb(255, 255, 255);
@@ -196,7 +198,7 @@ input[placeholder ="Créer un contact"]{
 }
 .takesTheWholePlace{
     width: 100%;
-    transition: 1.5s;
+    transition: all 1.5s;
 }
 
 /* .allContacts{
@@ -239,9 +241,11 @@ input[placeholder ="Créer un contact"]{
 }
 .styleDivCreateContactBody{
     display: flex;
+    flex-direction: column;
     width: 80%;
     height: 100%;
-    background-color: black;
+    /* gap: 10%; */
+    /* background-color: black; */
 }
 
 .styleBtnEnregistrer{
@@ -251,3 +255,75 @@ input[placeholder ="Créer un contact"]{
     border: none;
     border-radius: 15px;
 }
+
+.round{
+    width: 30%;
+    height: 40%;
+    border-radius: 50%;
+}
+
+.btnAddLibelle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 5%;
+    width: 15%;
+    height: 8%;
+    font-size: 1rem;
+    /* background-color: blue; */
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+.divInputPrenomDimension{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 8%;
+    background-color: aqua;
+    margin-top: 5%;
+}
+
+.inputPrenomDimension, 
+.inputNomDimension{
+    width: 80%;
+    height: 80%;
+    border-radius: 5px;
+}
+.iconPersonDimension{
+    width: 5%;
+    height: 90%;
+}
+
+.divInputNomDimension{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: 3%;
+    width: 80%;
+    height: 8%;
+    border-radius: 5px;
+}
+.divAddEmailAddressDimension{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    gap: 2%;
+    width: 65%;
+    height: 5%;
+    margin-left: 15%;
+    background-color: aqua;
+    margin-top: 5%;
+}
+.btnFlagList{
+    width: 12%;
+    height: 90%;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
