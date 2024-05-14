@@ -195,6 +195,7 @@ input[placeholder ="Créer un contact"]{
 .pushToTheLeftSide{
     transform: translateX(-300%);
     transition: all 1.5s;
+    display: none;
 }
 .takesTheWholePlace{
     width: 100%;
@@ -217,12 +218,14 @@ input[placeholder ="Créer un contact"]{
     color: black;
     text-align: justify;
     /* margin-top: 70px; */
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 .styleBorder {
-    
-    /* padding : 20px; */
-    border : 1px solid silver
+  
+    padding : 20px; 
+    /*border : 1px solid silver*/
+    border: none;
+
     
 }
 
@@ -331,5 +334,13 @@ input[placeholder ="Créer un contact"]{
     border: 2px solid black;
     border-radius: 5px;
     font-size: 1rem;
+}
+
+td{
+   padding: 2%;
+   
+}
+tr{
+    text-align: center;
 }
 

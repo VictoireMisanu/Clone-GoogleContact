@@ -43,7 +43,6 @@ burger.addEventListener("click", function(){
 const table = document.createElement('table');
 const thead = document.createElement('thead')
 const tr1 = document.createElement('tr')
-const tr2 = document.createElement('tr')
 const tbody = document.createElement('tbody')
 const th = document.createElement('th')
 const th1 = document.createElement('th')
@@ -68,6 +67,7 @@ th1.className = 'styleBorder'
 th2.className = 'styleBorder'
 th3.className = 'styleBorder'
 th4.className = 'styleBorder'
+//tbody.className = 'styleBorder'
 th.textContent = 'Titre'
 th1.textContent = 'Email'
 th2.textContent = 'Numéro de télépone'
@@ -124,10 +124,10 @@ Libelle0.textContent = 'Libellé'
 Libelle1.textContent = 'Famille'
 Libelle2.textContent = 'Bureau'
 Libelle3.textContent = 'Amis'
-Libelle0.value = '0'
+Libelle0.value = ' '
 Libelle1.value = 'Famille'
 Libelle2.value = 'Bureau'
-Libelle1.value = 'Amis'
+Libelle3.value = 'Amis'
 libelleContainer.append(Libelle0, Libelle1, Libelle2, Libelle3)
 
 const divInputPrenom = document.createElement('div')
@@ -247,17 +247,17 @@ btnCreateContact.addEventListener("click", function (){
 
     const allInput = document.querySelectorAll('.inputselected')
 
-console.log(allInput)
+//console.log(allInput)
 function switchStateBtnEnreg(){
     allInput.forEach(input =>{
         input.addEventListener('input', function(){
             if(inputPrenom.value == "" || inputNom.value == "" || inputEmail.value == "" || inputPhoneNumber.value == ""){
-                console.log("les inputs sont vides")
+                //console.log("les inputs sont vides")
                 btnEnregistrer.setAttribute('disabled', 'disabled')
             }
             else{
                 btnEnregistrer.removeAttribute('disabled', 'disabled')
-                console.log("les inputs ne sont pas vides")
+                //console.log("les inputs ne sont pas vides")
             }
         })
     })
@@ -283,19 +283,20 @@ btnEnregistrer.addEventListener('click', function(){
 )
 
 function showContacts(){
+    tbody.innerHTML = ""
     tabContacts.forEach(Contact => {
-        tr2.innerHTML = `<td>`+Contact.libelle+`</td>
-        <td>`+Contact.prenom+`</td>
-        <td>`+Contact.nom+`</td>
-        <td>`+Contact.Entreprise+`</td>
-        <td>`+Contact.Fonction+`</td>
+        let tr2 = document.createElement('tr')
+        tr2.innerHTML = `<td>`+Contact.prenom+ " "+Contact.nom+`</td>
         <td>`+Contact.Email+`</td>
-        <td>`+Contact.PhoneNumber+`</td>`
+        <td>`+Contact.PhoneNumber+`</td>
+        <td>`+Contact.Entreprise+" "+Contact.Fonction+`</td>
+        <td>`+Contact.libelle+`</td>`
 
-        tbody.append(tr2)
+        tbody.appendChild(tr2)
     })
+    tr2.classList.add('styleBorder')
+    console.log(tabContacts)
 }
-
 
 })
 
