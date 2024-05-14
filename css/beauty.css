@@ -255,6 +255,9 @@ input[placeholder ="Créer un contact"]{
     border: none;
     border-radius: 15px;
 }
+.styleBtnEnregistrer:hover{
+    cursor: pointer;
+}
 
 .round{
     width: 30%;
@@ -318,6 +321,9 @@ input[placeholder ="Créer un contact"]{
     margin-left: 15%;
     background-color: aqua;
     margin-top: 5%;
+}
+.divAddEmailAddressDimension:hover{
+    cursor: pointer;
 }
 .btnFlagList{
     width: 12%;

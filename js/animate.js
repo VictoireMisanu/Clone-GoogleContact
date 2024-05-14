@@ -10,7 +10,8 @@ const sideNav = document.querySelector("div[class = 'sidenav']")
 // const allContacts = document.querySelector("div[class = 'allContacts']")
 const mainSection = document.querySelector("main")
 const divContact = document.querySelector("div[class = 'allContacts']")
-console.log(divContact)
+
+// console.log(divContact)
 
 
 mainSection.classList.add('ordered')
@@ -41,7 +42,8 @@ burger.addEventListener("click", function(){
 
 const table = document.createElement('table');
 const thead = document.createElement('thead')
-const tr = document.createElement('tr')
+const tr1 = document.createElement('tr')
+const tr2 = document.createElement('tr')
 const tbody = document.createElement('tbody')
 const th = document.createElement('th')
 const th1 = document.createElement('th')
@@ -53,10 +55,10 @@ const td = document.createElement('td')
 divContact.append(table)
 table.append(thead)
 table.append(tbody)
-thead.append(tr)
+thead.append(tr1)
 
-tr.append(th,th1,th2,th3, th4)
-console.log(tr)
+tr1.append(th,th1,th2,th3, th4)
+// console.log(tr)
 
 
 
@@ -99,6 +101,7 @@ arrowContainer.addEventListener("click", function (){
 const btnEnregistrer = document.createElement('input')
 btnEnregistrer.setAttribute("type","submit")
 btnEnregistrer.setAttribute("value","Enregistrer")
+btnEnregistrer.setAttribute("disabled","true")
 btnEnregistrer.classList.add('styleBtnEnregistrer')
 divCreatetContactHeader.append(arrowContainer,btnEnregistrer)
 
@@ -107,7 +110,7 @@ profilePic.src = '/images/Contact.png'
 profilePic.classList.add('round')
 
 const libelleContainer = document.createElement('select')
-libelleContainer.setAttribute("required", "required")
+// libelleContainer.setAttribute("required", "required")
 libelleContainer.classList.add('btnAddLibelle')
 const Libelle0 = document.createElement('option')
 const Libelle1 = document.createElement('option')
@@ -133,7 +136,7 @@ iconPerson.src = '/images/bitcoin-icons--contacts-filled.png'
 const inputPrenom = document.createElement('input')
 inputPrenom.setAttribute('type','text')
 inputPrenom.setAttribute('placeHolder', 'Prenom')
-inputPrenom.setAttribute('required', 'required')
+// inputPrenom.setAttribute('required', 'required')
 divInputPrenom.classList.add('divInputPrenomDimension')
 inputPrenom.classList.add('inputPrenomDimension')
 iconPerson.classList.add('iconPersonDimension')
@@ -144,7 +147,7 @@ divInputNom.classList.add('divInputNomDimension')
 const inputNom = document.createElement('input')
 inputNom.setAttribute('type','text')
 inputNom.setAttribute('placeHolder', 'Nom')
-inputNom.setAttribute('required', 'required')
+// inputNom.setAttribute('required', 'required')
 inputNom.classList.add('inputNomDimension')
 divInputNom.append(inputNom)
 
@@ -154,7 +157,7 @@ iconEse.src = '/images/carbon--enterprise.png'
 const inputEse = document.createElement('input')
 inputEse.setAttribute('type','text')
 inputEse.setAttribute('placeHolder', 'Entreprise')
-inputEse.setAttribute('required', 'required')
+// inputEse.setAttribute('required', 'required')
 divInputEse.classList.add('divInputPrenomDimension')
 inputEse.classList.add('inputPrenomDimension')
 iconEse.classList.add('iconPersonDimension')
@@ -164,7 +167,7 @@ const divInputFonction = document.createElement('div')
 divInputFonction.classList.add('divInputNomDimension')
 const inputFonction = document.createElement('input')
 inputFonction.setAttribute('type','text')
-inputFonction.setAttribute('required', 'required')
+// inputFonction.setAttribute('required', 'required')
 inputFonction.setAttribute('placeHolder', 'Fonction')
 inputFonction.classList.add('inputNomDimension')
 divInputFonction.append(inputFonction)
@@ -174,7 +177,7 @@ const iconEmail = document.createElement('img')
 iconEmail.src = '/images/eva--email-outline.png'
 const inputEmail = document.createElement('input')
 inputEmail.setAttribute('type','email')
-inputEmail.setAttribute('required', 'required')
+// inputEmail.setAttribute('required', 'required')
 inputEmail.setAttribute('placeHolder', 'Email')
 inputEmail.setAttribute('disabled', 'true')
 divInputEmail.classList.add('divInputPrenomDimension')
@@ -194,7 +197,7 @@ divAddEmailAddress.append(plusEmail, emailTextContent)
 const divPhoneNumber = document.createElement('div')
 divPhoneNumber.classList.add('divInputPrenomDimension')
 const flagContainer = document.createElement('select')
-flagContainer.setAttribute('required', 'required')
+// flagContainer.setAttribute('required', 'required')
 flagContainer.classList.add('btnFlagList')
 const Flag0 = document.createElement('option')
 const Flag1 = document.createElement('option')
@@ -225,16 +228,73 @@ divCreateContactBody.append(profilePic, libelleContainer, divInputPrenom, divInp
 
 divAddEmailAddress.addEventListener('click', function(){
     inputEmail.removeAttribute('disabled')
-    inputEmail.onmouseenter()
+    inputEmail.select()
 })
 
-btnEnregistrer.addEventListener('click', function(){
+inputPrenom.classList.add('inputselected')
+inputNom.classList.add('inputselected')
+inputEse.classList.add('inputselected')
+inputFonction.classList.add('inputselected')
+inputEmail.classList.add('inputselected')
+inputPhoneNumber.classList.add('inputselected')
 
-})
+
+
 btnCreateContact.addEventListener("click", function (){
 
     divContact.remove()
     mainSection.append(divCreateContact)
+
+    const allInput = document.querySelectorAll('.inputselected')
+
+console.log(allInput)
+function switchStateBtnEnreg(){
+    allInput.forEach(input =>{
+        input.addEventListener('input', function(){
+            if(inputPrenom.value == "" || inputNom.value == "" || inputEmail.value == "" || inputPhoneNumber.value == ""){
+                console.log("les inputs sont vides")
+                btnEnregistrer.setAttribute('disabled', 'disabled')
+            }
+            else{
+                btnEnregistrer.removeAttribute('disabled', 'disabled')
+                console.log("les inputs ne sont pas vides")
+            }
+        })
+    })
+}
+
+switchStateBtnEnreg()
+const tabContacts = []
+
+btnEnregistrer.addEventListener('click', function(){
+        
+        const contactInfo = {
+            libelle:libelleContainer.value,
+            prenom: inputPrenom.value,
+            nom: inputNom.value,
+            Entreprise: inputEse.value,
+            Fonction: inputFonction.value,
+            Email: inputEmail.value,
+            PhoneNumber: inputPhoneNumber.value
+        }
+        tabContacts.push(contactInfo)
+        showContacts()
+    }
+)
+
+function showContacts(){
+    tabContacts.forEach(Contact => {
+        tr2.innerHTML = `<td>`+Contact.libelle+`</td>
+        <td>`+Contact.prenom+`</td>
+        <td>`+Contact.nom+`</td>
+        <td>`+Contact.Entreprise+`</td>
+        <td>`+Contact.Fonction+`</td>
+        <td>`+Contact.Email+`</td>
+        <td>`+Contact.PhoneNumber+`</td>`
+
+        tbody.append(tr2)
+    })
+}
 
 
 })
