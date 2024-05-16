@@ -64,12 +64,12 @@ tr1.append(th,th1,th2,th3, th4)
 
 
 
-table.className = 'styleTable'
-th.className = 'styleBorder'
-th1.className = 'styleBorder'
-th2.className = 'styleBorder'
-th3.className = 'styleBorder'
-th4.className = 'styleBorder'
+table.classList.add('styleTable')
+th.classList.add('styleBorder')
+th1.classList.add('styleBorder')
+th2.classList.add('styleBorder')
+th3.classList.add('styleBorder')
+th4.classList.add('styleBorder')
 //tbody.className = 'styleBorder'
 th.textContent = 'Titre'
 th1.textContent = 'Email'
@@ -91,6 +91,7 @@ divCreatetContactHeader.classList.add('styleDivCreateContactHeader')
 // divCreateContact.append(divCreatetContactHeader)
 divCreateContact.append(divCreatetContactHeader,divCreateContactBody)
 const arrowContainer = document.createElement('a')
+arrowContainer.classList.add("styleArrowContainer")
 const leftArrow = document.createElement('img')
 leftArrow.src = './images/arrowLeft.png'
 leftArrow.classList.add('alignDimine')
@@ -292,11 +293,18 @@ function showContacts(){
     tbody.innerHTML = ""
     tabContacts.forEach(Contact => {
         let tr2 = document.createElement('tr')
-        tr2.innerHTML = `<td>`+Contact.prenom+ " "+Contact.nom+`</td>
-        <td>`+Contact.Email+`</td>
-        <td>`+Contact.PhoneNumber+`</td>
-        <td>`+Contact.Entreprise+" "+Contact.Fonction+`</td>
-        <td>`+Contact.libelle+`</td>`
+        const td1 = document.createElement('td')
+        const td2 = document.createElement('td')
+        const td3 = document.createElement('td')
+        const td4 = document.createElement('td')
+        const td5 = document.createElement('td')
+       
+        td1.textContent = Contact.prenom+ " "+Contact.nom
+        td2.textContent = Contact.Email
+        td3.textContent = Contact.PhoneNumber
+        td4.textContent = Contact.Entreprise+" "+Contact.Fonction
+        td5.textContent = Contact.libelle
+        tr2.append(td1, td2, td3, td4, td5)
 
         tbody.appendChild(tr2)
         tr2.classList.add('styleBorder')
