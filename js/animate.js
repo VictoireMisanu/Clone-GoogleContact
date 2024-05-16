@@ -10,8 +10,11 @@ const sideNav = document.querySelector("div[class = 'sidenav']")
 // const allContacts = document.querySelector("div[class = 'allContacts']")
 const mainSection = document.querySelector("main")
 const divContact = document.querySelector("div[class = 'allContacts']")
+const numberOfContacts = document.querySelector('span')
+contactNumber = document.querySelector('.contactNumber')
+contact2Number = document.querySelector('.contact2Number')
+const tabContacts = []
 
-// console.log(divContact)
 
 
 mainSection.classList.add('ordered')
@@ -110,7 +113,7 @@ profilePic.src = '/images/Contact.png'
 profilePic.classList.add('round')
 
 const libelleContainer = document.createElement('select')
-// libelleContainer.setAttribute("required", "required")
+libelleContainer.setAttribute("required", "required")
 libelleContainer.classList.add('btnAddLibelle')
 const Libelle0 = document.createElement('option')
 const Libelle1 = document.createElement('option')
@@ -136,7 +139,7 @@ iconPerson.src = '/images/bitcoin-icons--contacts-filled.png'
 const inputPrenom = document.createElement('input')
 inputPrenom.setAttribute('type','text')
 inputPrenom.setAttribute('placeHolder', 'Prenom')
-// inputPrenom.setAttribute('required', 'required')
+inputPrenom.setAttribute('required', 'required')
 divInputPrenom.classList.add('divInputPrenomDimension')
 inputPrenom.classList.add('inputPrenomDimension')
 iconPerson.classList.add('iconPersonDimension')
@@ -147,7 +150,7 @@ divInputNom.classList.add('divInputNomDimension')
 const inputNom = document.createElement('input')
 inputNom.setAttribute('type','text')
 inputNom.setAttribute('placeHolder', 'Nom')
-// inputNom.setAttribute('required', 'required')
+inputNom.setAttribute('required', 'required')
 inputNom.classList.add('inputNomDimension')
 divInputNom.append(inputNom)
 
@@ -157,7 +160,7 @@ iconEse.src = '/images/carbon--enterprise.png'
 const inputEse = document.createElement('input')
 inputEse.setAttribute('type','text')
 inputEse.setAttribute('placeHolder', 'Entreprise')
-// inputEse.setAttribute('required', 'required')
+inputEse.setAttribute('required', 'required')
 divInputEse.classList.add('divInputPrenomDimension')
 inputEse.classList.add('inputPrenomDimension')
 iconEse.classList.add('iconPersonDimension')
@@ -167,7 +170,7 @@ const divInputFonction = document.createElement('div')
 divInputFonction.classList.add('divInputNomDimension')
 const inputFonction = document.createElement('input')
 inputFonction.setAttribute('type','text')
-// inputFonction.setAttribute('required', 'required')
+inputFonction.setAttribute('required', 'required')
 inputFonction.setAttribute('placeHolder', 'Fonction')
 inputFonction.classList.add('inputNomDimension')
 divInputFonction.append(inputFonction)
@@ -177,7 +180,7 @@ const iconEmail = document.createElement('img')
 iconEmail.src = '/images/eva--email-outline.png'
 const inputEmail = document.createElement('input')
 inputEmail.setAttribute('type','email')
-// inputEmail.setAttribute('required', 'required')
+inputEmail.setAttribute('required', 'required')
 inputEmail.setAttribute('placeHolder', 'Email')
 inputEmail.setAttribute('disabled', 'true')
 divInputEmail.classList.add('divInputPrenomDimension')
@@ -197,7 +200,7 @@ divAddEmailAddress.append(plusEmail, emailTextContent)
 const divPhoneNumber = document.createElement('div')
 divPhoneNumber.classList.add('divInputPrenomDimension')
 const flagContainer = document.createElement('select')
-// flagContainer.setAttribute('required', 'required')
+flagContainer.setAttribute('required', 'required')
 flagContainer.classList.add('btnFlagList')
 const Flag0 = document.createElement('option')
 const Flag1 = document.createElement('option')
@@ -227,6 +230,7 @@ divPhoneNumber.append(phoneIcon, flagContainer, inputPhoneNumber)
 divCreateContactBody.append(profilePic, libelleContainer, divInputPrenom, divInputNom, divInputEse, divInputFonction, divInputEmail, divAddEmailAddress, divPhoneNumber)
 
 divAddEmailAddress.addEventListener('click', function(){
+
     inputEmail.removeAttribute('disabled')
     inputEmail.select()
 })
@@ -264,12 +268,12 @@ function switchStateBtnEnreg(){
 }
 
 switchStateBtnEnreg()
-const tabContacts = []
 
 btnEnregistrer.addEventListener('click', function(){
         
         const contactInfo = {
             libelle:libelleContainer.value,
+            
             prenom: inputPrenom.value,
             nom: inputNom.value,
             Entreprise: inputEse.value,
@@ -279,6 +283,8 @@ btnEnregistrer.addEventListener('click', function(){
         }
         tabContacts.push(contactInfo)
         showContacts()
+
+        
     }
 )
 
@@ -293,14 +299,21 @@ function showContacts(){
         <td>`+Contact.libelle+`</td>`
 
         tbody.appendChild(tr2)
+        tr2.classList.add('styleBorder')
+        contactNumber.textContent = tabContacts.length
+        contact2Number.textContent = tabContacts.length
+        //console.log(tabContacts.length)
+        console.log(contact2Number.textContent)
     })
-    tr2.classList.add('styleBorder')
-    console.log(tabContacts)
+    
 }
 
 })
+
 
 btnContactList.addEventListener("click", function (){
     divCreateContact.remove()
     mainSection.append(divContact)
 })
+
+numberOfContacts.classList.add('bigger')

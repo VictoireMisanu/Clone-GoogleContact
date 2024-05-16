@@ -218,11 +218,11 @@ input[placeholder ="Créer un contact"]{
     color: black;
     text-align: justify;
     /* margin-top: 70px; */
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .styleBorder {
   
-    padding : 20px; 
+    padding : 10px; 
     /*border : 1px solid silver*/
     border: none;
 
@@ -312,6 +312,7 @@ input[placeholder ="Créer un contact"]{
     height: 8%;
     border-radius: 5px;
 }
+
 .divAddEmailAddressDimension{
     display: flex;
     flex-direction: row;
@@ -339,8 +340,9 @@ input[placeholder ="Créer un contact"]{
 td{
    padding: 2%;
    
+   
 }
-tr{
+/* tr{
     text-align: center;
-}
+} */
 
