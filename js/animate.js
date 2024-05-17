@@ -1,3 +1,4 @@
+const html = document.querySelector('html')
 const burger = document.querySelector("svg[id = 'icoOpen']")
 const contactIcon = document.querySelector("img[src = 'images/contact_icon.png'")
 const contactTitle = document.querySelector("a[ href = './index.html']")
@@ -120,10 +121,7 @@ const Libelle0 = document.createElement('option')
 const Libelle1 = document.createElement('option')
 const Libelle2 = document.createElement('option')
 const Libelle3 = document.createElement('option')
-// const plusLibelle = document.createElement('img')
-// plusLibelle.src = '/images/plus.png'
-// plusLibelle.classList.add('alignDimine')
-// const libelleTextContent = document.createElement('p')
+
 Libelle0.textContent = 'Libellé'
 Libelle1.textContent = 'Famille'
 Libelle2.textContent = 'Bureau'
@@ -243,8 +241,6 @@ inputFonction.classList.add('inputselected')
 inputEmail.classList.add('inputselected')
 inputPhoneNumber.classList.add('inputselected')
 
-
-
 btnCreateContact.addEventListener("click", function (){
 
     divContact.remove()
@@ -301,7 +297,7 @@ function showContacts(){
        
         td1.textContent = Contact.prenom+ " "+Contact.nom
         td2.textContent = Contact.Email
-        td3.textContent = Contact.PhoneNumber
+        td3.textContent = flagContainer.value+Contact.PhoneNumber
         td4.textContent = Contact.Entreprise+" "+Contact.Fonction
         td5.textContent = Contact.libelle
         tr2.append(td1, td2, td3, td4, td5)
@@ -313,11 +309,8 @@ function showContacts(){
         //console.log(tabContacts.length)
         console.log(contact2Number.textContent)
     })
-    
 }
-
 })
-
 
 btnContactList.addEventListener("click", function (){
     divCreateContact.remove()
@@ -325,3 +318,67 @@ btnContactList.addEventListener("click", function (){
 })
 
 numberOfContacts.classList.add('bigger')
+
+
+const plusLibelle = document.querySelector("svg[class = 'plusLibelle']")
+const createLabelContainer = document.createElement('div')
+createLabelContainer.classList.add('createLabelContainer')
+plusLibelle.addEventListener('click', function(){
+    html.prepend(createLabelContainer)
+    createLabelContainer.classList.remove('close')
+})
+// console.log(plusLibelle)
+// plusLibelle.src = '/images/plus.png'
+// plusLibelle.classList.add('alignDimine')
+// const libelleTextContent = document.createElement('p')
+
+const formCreateLabel = document.createElement('form')
+formCreateLabel.classList.add('styleFormCreateLabel')
+createLabelContainer.append(formCreateLabel)
+const formLabelTitle = document.createElement('p')
+formLabelTitle.textContent = 'Créer un libellé'
+formLabelTitle.classList.add('normalized')
+const inputFormCreateLabel = document.createElement('input')
+inputFormCreateLabel.setAttribute('type', 'text')
+inputFormCreateLabel.classList.add('styleInputFormCreatelabel')
+const btnShut = document.createElement('button')
+const btnCreateLabel = document.createElement('button')
+btnShut.textContent = 'Non, ne rien faire'
+btnShut.classList.add('styleBtnLabel')
+btnCreateLabel.classList.add('styleBtnLabel')
+btnCreateLabel.textContent = 'Enregistrer'
+const divFormLabelBtnContainer = document.createElement('div')
+divFormLabelBtnContainer.classList.add('styleLabelBtnContainer')
+divFormLabelBtnContainer.append(btnShut, btnCreateLabel)
+const labelInInput = document.createElement('label')
+labelInInput.textContent = 'Nouveau libellé'
+labelInInput.classList.add('styleLabelInInput')
+
+formCreateLabel.append(formLabelTitle, inputFormCreateLabel, divFormLabelBtnContainer, labelInInput)
+
+inputFormCreateLabel.addEventListener('mouseup', function(){
+    labelInInput.classList.remove('styleLabelInInput')
+    labelInInput.classList.add('newStyleLabelInInput')
+
+})
+inputFormCreateLabel.addEventListener('blur', function(){
+    if(inputFormCreateLabel.value == ""){
+        labelInInput.classList.remove('newStyleLabelInInput')
+        labelInInput.classList.add('styleLabelInInput')
+    }
+    else{
+        labelInInput.classList.add('newStyleLabelInInput')
+        labelInInput.classList.remove('styleLabelInInput')
+    }
+    
+    
+})
+
+btnShut.addEventListener('click', function(){
+    createLabelContainer.classList.add('close')
+    
+})
+btnCreateLabel.addEventListener('click', function(){
+    
+})
+
