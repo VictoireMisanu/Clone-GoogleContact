@@ -36,6 +36,7 @@ btnCreateContact.classList.add("measureColorCreateContact");
 btnContactList.classList.add("measureColorContactList");
 // divContact.classList.add('')
 
+
 burger.addEventListener("click", function () {
   if (sideNav.classList.contains("pushToTheLeftSide")) {
     sideNav.classList.remove("pushToTheLeftSide");
@@ -53,6 +54,7 @@ const thead = document.createElement("thead");
 const tr1 = document.createElement("tr");
 const tbody = document.createElement("tbody");
 const th = document.createElement("th");
+const th0 = document.createElement("th");
 const th1 = document.createElement("th");
 const th2 = document.createElement("th");
 const th3 = document.createElement("th");
@@ -64,17 +66,19 @@ table.append(thead);
 table.append(tbody);
 thead.append(tr1);
 
-tr1.append(th, th1, th2, th3, th4);
+tr1.append(th0, th, th1, th2, th3, th4);
 // console.log(tr)
 
 table.classList.add("styleTable");
 th.classList.add("styleBorder");
+th0.classList.add("styleBorder")
 th1.classList.add("styleBorder");
 th2.classList.add("styleBorder");
 th3.classList.add("styleBorder");
 th4.classList.add("styleBorder");
 //tbody.className = 'styleBorder'
 th.textContent = "Titre";
+th0.textContent = "Profil"
 th1.textContent = "Email";
 th2.textContent = "Numéro de télépone";
 th3.textContent = "Fonction et entreprise";
@@ -288,18 +292,25 @@ function showContacts(contacts) {
   tbody.innerHTML = "";
   contacts.forEach((Contact) => {
     let tr2 = document.createElement("tr");
+    const td0 = document.createElement("td");
     const td1 = document.createElement("td");
     const td2 = document.createElement("td");
     const td3 = document.createElement("td");
     const td4 = document.createElement("td");
     const td5 = document.createElement("td");
+    const profilePhoto = document.createElement('img')
+    profilePhoto.src = '/images/Contact.png'
+    profilePhoto.classList.add('smaller')
+    td0.appendChild(profilePhoto)
 
+    td1.classList.add('bold')
     td1.textContent = Contact.prenom + " " + Contact.nom;
     td2.textContent = Contact.Email;
     td3.textContent = flagContainer.value + Contact.PhoneNumber;
     td4.textContent = Contact.Entreprise + " " + Contact.Fonction;
     td5.textContent = Contact.libelle;
-    tr2.append(td1, td2, td3, td4, td5);
+    
+    tr2.append(td0, td1, td2, td3, td4, td5);
 
     tbody.appendChild(tr2);
     tr2.classList.add("styleBorder");

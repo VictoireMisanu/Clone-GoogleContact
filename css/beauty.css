@@ -28,11 +28,12 @@ a{
 }
 .goodLooking:focus{
     outline: none;
+    background-color: white;
 }
 .search:hover{
     box-shadow: 4px 4px 0 0  rgba(0, 0, 0, 0.2);
     border-radius: 0 5px 0 5px;
-    background-color: white;
+    background-color: rgb(240, 243, 244);
     width:42rem;
     height: 2.7rem;
     transition: all 1s;
@@ -227,7 +228,7 @@ input[placeholder ="Créer un contact"]{
     padding : 10px; 
     /*border : 1px solid silver*/
     border: none;
-    background-color: brown;
+    /* background-color: brown; */
 
     
 }
@@ -344,8 +345,10 @@ input[placeholder ="Créer un contact"]{
 }
 
 td{
-   padding: 2%;
+    text-align: center;
+   /* padding: 2%; */
    font-size: 1.2rem;
+   
    
 }
 th{
@@ -466,12 +469,18 @@ th{
    visibility: hidden;
    
 }
-
+.bold{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.smaller{
+    width: 80%;
+    height: 80%;
+}
 .labelList{
     display: flex;
     flex-direction: column;
     width: 100%;
-
 }
 
 .labels{
