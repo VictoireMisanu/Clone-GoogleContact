@@ -504,3 +504,17 @@ th{
 .labelName:hover{
     cursor: pointer;
 }
+
+.styleDivDeleteModify{
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    background-color: rgb(58, 117, 217);
+    visibility: hidden;
+}
+.newStyleDivDeleteModify{
+    visibility: visible;
+}
+.newStyleTr{
+    background-color: rgb(58, 117, 217);
+}

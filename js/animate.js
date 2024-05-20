@@ -302,15 +302,23 @@ function showContacts(contacts) {
     profilePhoto.src = '/images/Contact.png'
     profilePhoto.classList.add('smaller')
     td0.appendChild(profilePhoto)
-
     td1.classList.add('bold')
+
+  const divDeleteModify = document.createElement('div')
+  const btnDelete = document.createElement('img')
+  const btnModify = document.createElement('img')
+  btnDelete.src = '/images/material-symbols-light--delete-outline.png'
+  btnModify.src = '/images/mdi--pencil.png'
+
+  divDeleteModify.append(btnDelete, btnModify)
+  divDeleteModify.classList.add('styleDivDeleteModify')
     td1.textContent = Contact.prenom + " " + Contact.nom;
     td2.textContent = Contact.Email;
     td3.textContent = flagContainer.value + Contact.PhoneNumber;
     td4.textContent = Contact.Entreprise + " " + Contact.Fonction;
     td5.textContent = Contact.libelle;
     
-    tr2.append(td0, td1, td2, td3, td4, td5);
+    tr2.append(td0, td1, td2, td3, td4, td5, divDeleteModify);
 
     tbody.appendChild(tr2);
     tr2.classList.add("styleBorder");
