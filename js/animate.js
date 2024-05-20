@@ -25,6 +25,7 @@ noContact.classList.add('styleNoContact')
 
 let tabContacts = [];
 const tabLabels = [];
+
 const libelleContainer = document.createElement("select");
 
 mainSection.classList.add("ordered");
@@ -283,6 +284,7 @@ btnCreateContact.addEventListener("click", function () {
     
     showContacts(tabContacts);
     showLabels();
+    showHideContacts();
   });
 
 });
@@ -509,21 +511,24 @@ function eventClick(){
     })
 }
 
-// function showHideContacts(){
-//   if(tabContacts.length == 0){
-//     numberOfContacts.classList.add('disappear')
-//     table.classList.add('disappear')
-//     divContact.append(noContact)
-//     divContact.classList.add('newStyleDivContact')
-//   }
-//   else if(tabContacts.length >=1){
-//     divCreateContact.remove();
+function showHideContacts(){
+  if(tabContacts.length == 0){
+    numberOfContacts.classList.add('disappear')
+    table.classList.add('disappear')
+    divContact.append(noContact)
+    divContact.classList.add('newStyleDivContact')
+  }
+  else if(tabContacts.length >=1){
+    //divCreateContact.remove();
       
-//       // divContact.append(numberOfContacts)
-//       // mainSection.append(divContact);
-//       noContact.classList.add('disappear')
-//       numberOfContacts.classList.remove('disappear')
-//       divContact.classList.remove('newStyleDivContact')
+      // divContact.append(numberOfContacts)
+      // mainSection.append(divContact);
+      noContact.classList.add('disappear')
+      table.classList.remove('disappear')
+      numberOfContacts.classList.remove('disappear')
+      divContact.classList.remove('newStyleDivContact')
       
-//   }
-// }
+  }
+}
+
+showHideContacts()
