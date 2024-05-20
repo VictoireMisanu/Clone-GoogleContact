@@ -241,7 +241,6 @@ input[placeholder ="Créer un contact"]{
     margin-top: 2%;
     width: 80%;
     height: 10%;
-    background-color: rgb(212, 126, 126);
     border: none;
     border-radius: 5px;
     margin-left: 5%;
@@ -295,7 +294,6 @@ input[placeholder ="Créer un contact"]{
     justify-content: space-between;
     width: 80%;
     height: 8%;
-    background-color: aqua;
     margin-top: 5%;
 }
 
@@ -517,4 +515,20 @@ th{
 }
 .newStyleTr{
     background-color: rgb(58, 117, 217);
+}
+
+.styleNoContact{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+    color:rgb(58, 117, 217) ;
+}
+
+.newStyleDivContact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.disappear{
+    display: none;
 }

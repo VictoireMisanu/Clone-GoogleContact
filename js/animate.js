@@ -12,18 +12,18 @@ const btnCreateContact = document.querySelector(
 );
 const btnContactList = document.querySelector("a[ class = 'btnContactList']");
 const sideNav = document.querySelector("div[class = 'sidenav']");
-// const allContacts = document.querySelector("div[class = 'allContacts']")
 const mainSection = document.querySelector("main");
 const divContact = document.querySelector("div[class = 'allContacts']");
 const allLabels = document.querySelector("div[class = 'labelList']");
 const numberOfContacts = document.querySelector("span");
 contactNumber = document.querySelector(".contactNumber");
 contact2Number = document.querySelector(".contact2Number");
+let indiceLigne = 0 ;
+const noContact = document.createElement('p')
+noContact.textContent = 'Aucun contact n\'a été trouvé' 
+noContact.classList.add('styleNoContact')
 
-
-if(contactNumber){}
-
-const tabContacts = [];
+let tabContacts = [];
 const tabLabels = [];
 const libelleContainer = document.createElement("select");
 
@@ -37,8 +37,6 @@ searchZone.setAttribute("placeHolder", "Rechercher");
 header.classList.add("centered");
 btnCreateContact.classList.add("measureColorCreateContact");
 btnContactList.classList.add("measureColorContactList");
-// divContact.classList.add('')
-
 
 burger.addEventListener("click", function () {
   if (sideNav.classList.contains("pushToTheLeftSide")) {
@@ -47,7 +45,7 @@ burger.addEventListener("click", function () {
   } else {
     sideNav.classList.add("pushToTheLeftSide");
     divContact.classList.add("takesTheWholePlace");
-    // mainSection.classList.remove('ordered')
+    
   }
 });
 // création du contenu de la page ListContact
@@ -70,7 +68,7 @@ table.append(tbody);
 thead.append(tr1);
 
 tr1.append(th0, th, th1, th2, th3, th4);
-// console.log(tr)
+
 
 table.classList.add("styleTable");
 th.classList.add("styleBorder");
@@ -79,7 +77,6 @@ th1.classList.add("styleBorder");
 th2.classList.add("styleBorder");
 th3.classList.add("styleBorder");
 th4.classList.add("styleBorder");
-//tbody.className = 'styleBorder'
 th.textContent = "Titre";
 th0.textContent = "Profil"
 th1.textContent = "Email";
@@ -91,13 +88,13 @@ th4.textContent = "groupe";
 
 const divCreateContact = document.createElement("div");
 divCreateContact.classList.add("styleCreateContact");
-// divCreateContact.textContent = "Bonjour"
+
 const divCreatetContactHeader = document.createElement("div");
 const divCreateContactBody = document.createElement("form");
 
 divCreateContactBody.classList.add("styleDivCreateContactBody");
 divCreatetContactHeader.classList.add("styleDivCreateContactHeader");
-// divCreateContact.append(divCreatetContactHeader)
+
 divCreateContact.append(divCreatetContactHeader, divCreateContactBody);
 const arrowContainer = document.createElement("a");
 arrowContainer.classList.add("styleArrowContainer");
@@ -105,7 +102,7 @@ const leftArrow = document.createElement("img");
 leftArrow.src = "./images/arrowLeft.png";
 leftArrow.classList.add("alignDimine");
 arrowContainer.append(leftArrow);
-// divCreatetContactHeader.append(arrowContainer)
+
 arrowContainer.addEventListener("click", function () {
   divCreateContact.remove();
   mainSection.append(divContact);
@@ -241,12 +238,12 @@ inputEmail.classList.add("inputselected");
 inputPhoneNumber.classList.add("inputselected");
 
 btnCreateContact.addEventListener("click", function () {
+
   divContact.remove();
   mainSection.append(divCreateContact);
 
   const allInput = document.querySelectorAll(".inputselected");
 
-  //console.log(allInput)
   function switchStateBtnEnreg() {
     allInput.forEach((input) => {
       input.addEventListener("input", function () {
@@ -256,11 +253,11 @@ btnCreateContact.addEventListener("click", function () {
           inputEmail.value == "" ||
           inputPhoneNumber.value == ""
         ) {
-          //console.log("les inputs sont vides")
+        
           btnEnregistrer.setAttribute("disabled", "disabled");
         } else {
           btnEnregistrer.removeAttribute("disabled", "disabled");
-          //console.log("les inputs ne sont pas vides")
+        
         }
       });
     });
@@ -279,12 +276,15 @@ btnCreateContact.addEventListener("click", function () {
       Email: inputEmail.value,
       PhoneNumber: inputPhoneNumber.value
     };
+
     tabContacts.push(contactInfo);
-   
+    divCreateContactBody.reset()
+    btnEnregistrer.setAttribute('disabled', 'disabled')
     
     showContacts(tabContacts);
     showLabels();
   });
+
 });
 
 btnContactList.addEventListener("click", function () {
@@ -331,29 +331,20 @@ function showContacts(contacts) {
     divDeleteModify.classList.remove('newStyleDivDeleteModify')
     tr2.classList.remove('newStyleTr')
   })
-  
-  // btnDelete.forEach(function(contact){
-  //   contact.addEventListener('cilck', function(){
-  //     const tr2 = this.closest('tr');
-  //     const td0 = tr2.querySelector('td:nth-child(0)').textContent
-  //     const td1 = tr2.querySelector('td:nth-child(1)').textContent
-  //     const td2 = tr2.querySelector('td:nth-child(2)').textContent
-  //     const td3 = tr2.querySelector('td:nth-child(3)').textContent
-  //     const td4 = tr2.querySelector('td:nth-child(4)').textContent
-  //     const td5 = tr2.querySelector('td:nth-child(5)').textContent
-
-      
-  //   })
-  // })
+    
   btnDelete.addEventListener('click', function(){
+    eventClick()
+    
     const confirmationDeletion = confirm('voulez-vous vraiment supprimer ce contact?')
-    const tr2 = this.closest('tr')
+    const trA = this.closest('tr')
     if(confirmationDeletion){
-      tr2.remove()
-
-
+      tabContacts.splice(indiceLigne,1); 
+      trA.remove()
+   
+      
       contactNumber.textContent = tabContacts.length;
       contact2Number.textContent = tabContacts.length;
+      showLabels()
     
     }
    
@@ -375,10 +366,10 @@ function showContacts(contacts) {
     tr2.classList.add("lignes");
     contactNumber.textContent = tabContacts.length;
     contact2Number.textContent = tabContacts.length;
-    
-    //console.log(tabContacts.length)
-    //console.log(contact2Number.textContent)
+   
+
   });
+
   eventClick();
 }
 
@@ -391,10 +382,7 @@ plusLibelle.addEventListener("click", function () {
   html.prepend(createLabelContainer);
   createLabelContainer.classList.remove("close");
 });
-// console.log(plusLibelle)
-// plusLibelle.src = '/images/plus.png'
-// plusLibelle.classList.add('alignDimine')
-// const libelleTextContent = document.createElement('p')
+
 
 const formCreateLabel = document.createElement("form");
 formCreateLabel.classList.add("styleFormCreateLabel");
@@ -452,7 +440,7 @@ createLabelContainer.addEventListener("click", function (event) {
 });
 
 btnCreateLabel.addEventListener("click", function () {
-  //formCreateLabel.preventDefault()
+  
   const labelContainer = document.createElement("div");
   const labelLogo = document.createElement("img");
   const labelName = document.createElement("a");
@@ -463,9 +451,7 @@ btnCreateLabel.addEventListener("click", function () {
   labelLogo.src = "/images/material-symbols-light--label.png";
 
   labelContainer.classList.add("labels");
-
-  // <a href="#" class="labels"><svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path fill="black" d="m20 12l-4.238 6H4V6h11.723z"/></svg>Eglise <small>0</small></a>
-  // console.log(inputFormCreateLabel.value)
+  
   labelName.textContent = inputFormCreateLabel.value;
   labelContainer.append(labelLogo, labelName, labelNumber);
   
@@ -477,9 +463,12 @@ btnCreateLabel.addEventListener("click", function () {
   })
   tabLabels.push(labelContainer);
   fillLabelListDropDown(tabLabels)
-  // allLabels.append(labelContainer)
+  
   showLabels();
+  
   createLabelContainer.classList.add("close");
+
+  formCreateLabel.reset()
 });
 
 function showLabels() {
@@ -489,10 +478,6 @@ function showLabels() {
     const tabLabelsContact = tabContacts.filter(contact => contact.libelle == labelNameView.textContent)
     labelNumberView.textContent = tabLabelsContact.length
     allLabels.append(labelContainer);
-    //console.log(labelContainer);
-    //console.log(tabLabels)
-    //console.log(tabContacts.length)
-    //console.log(contact2Number.textContent)
   });
 }
 
@@ -513,7 +498,32 @@ function eventClick(){
    let  allRowsContact = document.querySelectorAll('.lignes');
     allRowsContact.forEach(function(allRow){
            allRow.addEventListener('click',function(){
-               alert(allRow.rowIndex);
+               indiceLigne =  allRow.rowIndex -1;
            })
+           allRow.addEventListener('mouseover',function(){
+            indiceLigne =  allRow.rowIndex -1;
+        })
+        allRow.addEventListener('mouseout',function(){
+          indiceLigne =  allRow.rowIndex -1;
+      })
     })
 }
+
+// function showHideContacts(){
+//   if(tabContacts.length == 0){
+//     numberOfContacts.classList.add('disappear')
+//     table.classList.add('disappear')
+//     divContact.append(noContact)
+//     divContact.classList.add('newStyleDivContact')
+//   }
+//   else if(tabContacts.length >=1){
+//     divCreateContact.remove();
+      
+//       // divContact.append(numberOfContacts)
+//       // mainSection.append(divContact);
+//       noContact.classList.add('disappear')
+//       numberOfContacts.classList.remove('disappear')
+//       divContact.classList.remove('newStyleDivContact')
+      
+//   }
+// }
