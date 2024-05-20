@@ -20,6 +20,9 @@ const numberOfContacts = document.querySelector("span");
 contactNumber = document.querySelector(".contactNumber");
 contact2Number = document.querySelector(".contact2Number");
 
+
+if(contactNumber){}
+
 const tabContacts = [];
 const tabLabels = [];
 const libelleContainer = document.createElement("select");
@@ -277,6 +280,8 @@ btnCreateContact.addEventListener("click", function () {
       PhoneNumber: inputPhoneNumber.value
     };
     tabContacts.push(contactInfo);
+   
+    
     showContacts(tabContacts);
     showLabels();
   });
@@ -310,8 +315,53 @@ function showContacts(contacts) {
   btnDelete.src = '/images/material-symbols-light--delete-outline.png'
   btnModify.src = '/images/mdi--pencil.png'
 
+  btnDelete.classList.add('labelName')
+  btnModify.classList.add('labelName')
+
   divDeleteModify.append(btnDelete, btnModify)
   divDeleteModify.classList.add('styleDivDeleteModify')
+
+  tr2.addEventListener('mouseover', function(){
+    divDeleteModify.classList.remove('styleDivDeleteModify')
+    divDeleteModify.classList.add('newStyleDivDeleteModify')
+    tr2.classList.add('newStyleTr')
+  })
+  tr2.addEventListener('mouseout', function(){
+    divDeleteModify.classList.add('styleDivDeleteModify')
+    divDeleteModify.classList.remove('newStyleDivDeleteModify')
+    tr2.classList.remove('newStyleTr')
+  })
+  
+  // btnDelete.forEach(function(contact){
+  //   contact.addEventListener('cilck', function(){
+  //     const tr2 = this.closest('tr');
+  //     const td0 = tr2.querySelector('td:nth-child(0)').textContent
+  //     const td1 = tr2.querySelector('td:nth-child(1)').textContent
+  //     const td2 = tr2.querySelector('td:nth-child(2)').textContent
+  //     const td3 = tr2.querySelector('td:nth-child(3)').textContent
+  //     const td4 = tr2.querySelector('td:nth-child(4)').textContent
+  //     const td5 = tr2.querySelector('td:nth-child(5)').textContent
+
+      
+  //   })
+  // })
+  btnDelete.addEventListener('click', function(){
+    const confirmationDeletion = confirm('voulez-vous vraiment supprimer ce contact?')
+    const tr2 = this.closest('tr')
+    if(confirmationDeletion){
+      tr2.remove()
+
+
+      contactNumber.textContent = tabContacts.length;
+      contact2Number.textContent = tabContacts.length;
+    
+    }
+   
+  })
+  btnModify.addEventListener('click', function(){
+
+  })
+
     td1.textContent = Contact.prenom + " " + Contact.nom;
     td2.textContent = Contact.Email;
     td3.textContent = flagContainer.value + Contact.PhoneNumber;
@@ -322,11 +372,14 @@ function showContacts(contacts) {
 
     tbody.appendChild(tr2);
     tr2.classList.add("styleBorder");
+    tr2.classList.add("lignes");
     contactNumber.textContent = tabContacts.length;
     contact2Number.textContent = tabContacts.length;
+    
     //console.log(tabContacts.length)
     //console.log(contact2Number.textContent)
   });
+  eventClick();
 }
 
 numberOfContacts.classList.add("bigger");
@@ -454,4 +507,13 @@ function fillLabelListDropDown(labels){
     labelView.value = label.querySelector('.labelName').textContent
     libelleContainer.appendChild(labelView)
   })
+}
+
+function eventClick(){
+   let  allRowsContact = document.querySelectorAll('.lignes');
+    allRowsContact.forEach(function(allRow){
+           allRow.addEventListener('click',function(){
+               alert(allRow.rowIndex);
+           })
+    })
 }

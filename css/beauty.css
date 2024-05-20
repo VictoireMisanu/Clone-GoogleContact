@@ -441,7 +441,7 @@ th{
     font-size: 0.8rem;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(58, 117, 217);
-    margin: 0% 0% 5.5% 1%;
+    margin: 0% 0% 7% 1%;
     background-color: rgb(238, 243, 251);
     /* transition: all 0.5s; */
 }
@@ -507,8 +507,8 @@ th{
 
 .styleDivDeleteModify{
     display: flex;
-    align-items: flex-end;
-    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
     background-color: rgb(58, 117, 217);
     visibility: hidden;
 }
