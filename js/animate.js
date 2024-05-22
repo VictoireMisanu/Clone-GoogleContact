@@ -531,4 +531,11 @@ function showHideContacts(){
   }
 }
 
+// function contactInfoToEdit(contact){
+//   divContact.remove();
+//   mainSection.append(divCreateContact);
+
+//   inputPrenom.value = contact.prenomcontact
+// }
+
 showHideContacts()
