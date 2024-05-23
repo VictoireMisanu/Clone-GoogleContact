@@ -18,13 +18,14 @@ const allLabels = document.querySelector("div[class = 'labelList']");
 const numberOfContacts = document.querySelector("span");
 contactNumber = document.querySelector(".contactNumber");
 contact2Number = document.querySelector(".contact2Number");
-let indiceLigne = 0 ;
-const noContact = document.createElement('p')
-noContact.textContent = 'Aucun contact n\'a été trouvé' 
-noContact.classList.add('styleNoContact')
+let indiceLigne = 0;
+const noContact = document.createElement("p");
+noContact.textContent = "Aucun contact n'a été trouvé";
+noContact.classList.add("styleNoContact");
 
 let tabContacts = [];
 const tabLabels = [];
+let contactIndexToEdit = -1;
 
 const libelleContainer = document.createElement("select");
 
@@ -46,7 +47,6 @@ burger.addEventListener("click", function () {
   } else {
     sideNav.classList.add("pushToTheLeftSide");
     divContact.classList.add("takesTheWholePlace");
-    
   }
 });
 // création du contenu de la page ListContact
@@ -70,16 +70,15 @@ thead.append(tr1);
 
 tr1.append(th0, th, th1, th2, th3, th4);
 
-
 table.classList.add("styleTable");
 th.classList.add("styleBorder");
-th0.classList.add("styleBorder")
+th0.classList.add("styleBorder");
 th1.classList.add("styleBorder");
 th2.classList.add("styleBorder");
 th3.classList.add("styleBorder");
 th4.classList.add("styleBorder");
 th.textContent = "Titre";
-th0.textContent = "Profil"
+th0.textContent = "Profil";
 th1.textContent = "Email";
 th2.textContent = "Numéro de télépone";
 th3.textContent = "Fonction et entreprise";
@@ -109,9 +108,9 @@ arrowContainer.addEventListener("click", function () {
   mainSection.append(divContact);
 });
 
-const btnEnregistrer = document.createElement("input");
+const btnEnregistrer = document.createElement("button");
 btnEnregistrer.setAttribute("type", "submit");
-btnEnregistrer.setAttribute("value", "Enregistrer");
+btnEnregistrer.textContent = 'Enregistrer';
 btnEnregistrer.setAttribute("disabled", "true");
 btnEnregistrer.classList.add("styleBtnEnregistrer");
 divCreatetContactHeader.append(arrowContainer, btnEnregistrer);
@@ -239,7 +238,6 @@ inputEmail.classList.add("inputselected");
 inputPhoneNumber.classList.add("inputselected");
 
 btnCreateContact.addEventListener("click", function () {
-
   divContact.remove();
   mainSection.append(divCreateContact);
 
@@ -254,11 +252,9 @@ btnCreateContact.addEventListener("click", function () {
           inputEmail.value == "" ||
           inputPhoneNumber.value == ""
         ) {
-        
           btnEnregistrer.setAttribute("disabled", "disabled");
         } else {
           btnEnregistrer.removeAttribute("disabled", "disabled");
-        
         }
       });
     });
@@ -267,32 +263,46 @@ btnCreateContact.addEventListener("click", function () {
   switchStateBtnEnreg();
 
   btnEnregistrer.addEventListener("click", function () {
-    const contactInfo = {
-      libelle: libelleContainer.value,
+    console.log("btn clicked");
+    if (btnEnregistrer.textContent === "Modifier") {
+      if (contactIndexToEdit >= 0) {
+        tabContacts[contactIndexToEdit].prenom = inputPrenom.value;
+        tabContacts[contactIndexToEdit].nom = inputNom.value;
+        tabContacts[contactIndexToEdit].Entreprise = inputEse.value;
+        tabContacts[contactIndexToEdit].Fonction = inputFonction.value;
+        tabContacts[contactIndexToEdit].Email = inputEmail.value;
+        tabContacts[contactIndexToEdit].PhoneNumber = inputPhoneNumber.value;
+        tabContacts[contactIndexToEdit].libelle = libelleContainer.value;
+        showLabels();
+        alert("modification reussie");
+      }
+    } else {
+      const contactInfo = {
+        libelle: libelleContainer.value,
 
-      prenom: inputPrenom.value,
-      nom: inputNom.value,
-      Entreprise: inputEse.value,
-      Fonction: inputFonction.value,
-      Email: inputEmail.value,
-      PhoneNumber: inputPhoneNumber.value
-    };
+        prenom: inputPrenom.value,
+        nom: inputNom.value,
+        Entreprise: inputEse.value,
+        Fonction: inputFonction.value,
+        Email: inputEmail.value,
+        PhoneNumber: inputPhoneNumber.value
+      };
 
-    tabContacts.push(contactInfo);
-    divCreateContactBody.reset()
-    btnEnregistrer.setAttribute('disabled', 'disabled')
-    
+      tabContacts.push(contactInfo);
+      divCreateContactBody.reset();
+      btnEnregistrer.disabled= true;
+    }
+
     showContacts(tabContacts);
     showLabels();
     showHideContacts();
   });
-
 });
 
 btnContactList.addEventListener("click", function () {
   divCreateContact.remove();
   mainSection.append(divContact);
-  showContacts(tabContacts)
+  showContacts(tabContacts);
 });
 
 function showContacts(contacts) {
@@ -305,62 +315,62 @@ function showContacts(contacts) {
     const td3 = document.createElement("td");
     const td4 = document.createElement("td");
     const td5 = document.createElement("td");
-    const profilePhoto = document.createElement('img')
-    profilePhoto.src = '/images/Contact.png'
-    profilePhoto.classList.add('smaller')
-    td0.appendChild(profilePhoto)
-    td1.classList.add('bold')
+    const profilePhoto = document.createElement("img");
+    profilePhoto.src = "/images/Contact.png";
+    profilePhoto.classList.add("smaller");
+    td0.appendChild(profilePhoto);
+    td1.classList.add("bold");
 
-  const divDeleteModify = document.createElement('div')
-  const btnDelete = document.createElement('img')
-  const btnModify = document.createElement('img')
-  btnDelete.src = '/images/material-symbols-light--delete-outline.png'
-  btnModify.src = '/images/mdi--pencil.png'
+    const divDeleteModify = document.createElement("div");
+    const btnDelete = document.createElement("img");
+    const btnModify = document.createElement("img");
+    btnDelete.src = "/images/material-symbols-light--delete-outline.png";
+    btnModify.src = "/images/mdi--pencil.png";
 
-  btnDelete.classList.add('labelName')
-  btnModify.classList.add('labelName')
+    btnDelete.classList.add("labelName");
+    btnModify.classList.add("labelName");
 
-  divDeleteModify.append(btnDelete, btnModify)
-  divDeleteModify.classList.add('styleDivDeleteModify')
+    divDeleteModify.append(btnDelete, btnModify);
+    divDeleteModify.classList.add("styleDivDeleteModify");
 
-  tr2.addEventListener('mouseover', function(){
-    divDeleteModify.classList.remove('styleDivDeleteModify')
-    divDeleteModify.classList.add('newStyleDivDeleteModify')
-    tr2.classList.add('newStyleTr')
-  })
-  tr2.addEventListener('mouseout', function(){
-    divDeleteModify.classList.add('styleDivDeleteModify')
-    divDeleteModify.classList.remove('newStyleDivDeleteModify')
-    tr2.classList.remove('newStyleTr')
-  })
-    
-  btnDelete.addEventListener('click', function(){
-    eventClick()
-    
-    const confirmationDeletion = confirm('voulez-vous vraiment supprimer ce contact?')
-    const trA = this.closest('tr')
-    if(confirmationDeletion){
-      tabContacts.splice(indiceLigne,1); 
-      trA.remove()
-   
-      
-      contactNumber.textContent = tabContacts.length;
-      contact2Number.textContent = tabContacts.length;
-      showLabels()
-    
-    }
-   
-  })
-  btnModify.addEventListener('click', function(){
+    tr2.addEventListener("mouseover", function () {
+      divDeleteModify.classList.remove("styleDivDeleteModify");
+      divDeleteModify.classList.add("newStyleDivDeleteModify");
+      tr2.classList.add("newStyleTr");
+    });
+    tr2.addEventListener("mouseout", function () {
+      divDeleteModify.classList.add("styleDivDeleteModify");
+      divDeleteModify.classList.remove("newStyleDivDeleteModify");
+      tr2.classList.remove("newStyleTr");
+    });
 
-  })
+    btnDelete.addEventListener("click", function () {
+      // eventClick()
+
+      const confirmationDeletion = confirm(
+        "voulez-vous vraiment supprimer ce contact?"
+      );
+      //const trA = this.closest("tr");
+      if (confirmationDeletion) {
+        tabContacts.splice(tabContacts.indexOf(Contact), 1);
+        //trA.remove()
+        showContacts(tabContacts);
+
+        contactNumber.textContent = tabContacts.length;
+        contact2Number.textContent = tabContacts.length;
+        showLabels();
+      }
+    });
+    btnModify.addEventListener("click", function () {
+      contactInfoToEdit(Contact);
+    });
 
     td1.textContent = Contact.prenom + " " + Contact.nom;
     td2.textContent = Contact.Email;
     td3.textContent = flagContainer.value + Contact.PhoneNumber;
     td4.textContent = Contact.Entreprise + " " + Contact.Fonction;
     td5.textContent = Contact.libelle;
-    
+
     tr2.append(td0, td1, td2, td3, td4, td5, divDeleteModify);
 
     tbody.appendChild(tr2);
@@ -368,11 +378,9 @@ function showContacts(contacts) {
     tr2.classList.add("lignes");
     contactNumber.textContent = tabContacts.length;
     contact2Number.textContent = tabContacts.length;
-   
-
   });
 
-  eventClick();
+  // eventClick();
 }
 
 numberOfContacts.classList.add("bigger");
@@ -384,7 +392,6 @@ plusLibelle.addEventListener("click", function () {
   html.prepend(createLabelContainer);
   createLabelContainer.classList.remove("close");
 });
-
 
 const formCreateLabel = document.createElement("form");
 formCreateLabel.classList.add("styleFormCreateLabel");
@@ -408,7 +415,7 @@ divFormLabelBtnContainer.classList.add("styleLabelBtnContainer");
 divFormLabelBtnContainer.append(btnShut, btnCreateLabel);
 const labelInInput = document.createElement("label");
 labelInInput.textContent = "Nouveau libellé";
-labelInInput.setAttribute('for', 'inputFormLabelId');
+labelInInput.setAttribute("for", "inputFormLabelId");
 labelInInput.classList.add("styleLabelInInput");
 
 formCreateLabel.append(
@@ -437,12 +444,11 @@ btnShut.addEventListener("click", function () {
 });
 
 createLabelContainer.addEventListener("click", function (event) {
-    if(event.target == createLabelContainer)
+  if (event.target == createLabelContainer)
     createLabelContainer.classList.add("close");
 });
 
 btnCreateLabel.addEventListener("click", function () {
-  
   const labelContainer = document.createElement("div");
   const labelLogo = document.createElement("img");
   const labelName = document.createElement("a");
@@ -453,32 +459,36 @@ btnCreateLabel.addEventListener("click", function () {
   labelLogo.src = "/images/material-symbols-light--label.png";
 
   labelContainer.classList.add("labels");
-  
+
   labelName.textContent = inputFormCreateLabel.value;
   labelContainer.append(labelLogo, labelName, labelNumber);
-  
-  labelContainer.addEventListener("click", (event)=>{
-    const tabLabelsContact = tabContacts.filter(contact => contact.libelle == labelName.textContent)
+
+  labelContainer.addEventListener("click", (event) => {
+    const tabLabelsContact = tabContacts.filter(
+      (contact) => contact.libelle == labelName.textContent
+    );
     divCreateContact.remove();
     mainSection.append(divContact);
     showContacts(tabLabelsContact);
-  })
+  });
   tabLabels.push(labelContainer);
-  fillLabelListDropDown(tabLabels)
-  
+  fillLabelListDropDown(tabLabels);
+
   showLabels();
-  
+
   createLabelContainer.classList.add("close");
 
-  formCreateLabel.reset()
+  formCreateLabel.reset();
 });
 
 function showLabels() {
   tabLabels.forEach((labelContainer) => {
-    const labelNumberView = labelContainer.querySelector('small')
-    const labelNameView = labelContainer.querySelector('.labelName')
-    const tabLabelsContact = tabContacts.filter(contact => contact.libelle == labelNameView.textContent)
-    labelNumberView.textContent = tabLabelsContact.length
+    const labelNumberView = labelContainer.querySelector("small");
+    const labelNameView = labelContainer.querySelector(".labelName");
+    const tabLabelsContact = tabContacts.filter(
+      (contact) => contact.libelle == labelNameView.textContent
+    );
+    labelNumberView.textContent = tabLabelsContact.length;
     allLabels.append(labelContainer);
   });
 }
@@ -486,49 +496,65 @@ function showLabels() {
 libelleContainer.classList.add("btnAddLibelle");
 // remplir le dropdown des labels
 
-function fillLabelListDropDown(labels){
-  libelleContainer.innerHTML= ""
-  labels.forEach(label => {
-    const labelView = document.createElement('option')
-    labelView.textContent = label.querySelector('.labelName').textContent
-    labelView.value = label.querySelector('.labelName').textContent
-    libelleContainer.appendChild(labelView)
-  })
+function fillLabelListDropDown(labels) {
+  libelleContainer.innerHTML = "";
+  labels.forEach((label) => {
+    const labelView = document.createElement("option");
+    labelView.textContent = label.querySelector(".labelName").textContent;
+    labelView.value = label.querySelector(".labelName").textContent;
+    libelleContainer.appendChild(labelView);
+  });
 }
 
-function eventClick(){
-   let  allRowsContact = document.querySelectorAll('.lignes');
-    allRowsContact.forEach(function(allRow){
-           allRow.addEventListener('click',function(){
-               indiceLigne =  allRow.rowIndex -1;
-           })
-           allRow.addEventListener('mouseover',function(){
-            indiceLigne =  allRow.rowIndex -1;
-        })
-        allRow.addEventListener('mouseout',function(){
-          indiceLigne =  allRow.rowIndex -1;
-      })
-    })
+function eventClick() {
+  let allRowsContact = document.querySelectorAll(".lignes");
+  allRowsContact.forEach(function (allRow) {
+    allRow.addEventListener("click", function () {
+      indiceLigne = allRow.rowIndex - 1;
+    });
+    allRow.addEventListener("mouseover", function () {
+      indiceLigne = allRow.rowIndex - 1;
+    });
+    allRow.addEventListener("mouseout", function () {
+      indiceLigne = allRow.rowIndex - 1;
+    });
+  });
 }
 
-function showHideContacts(){
-  if(tabContacts.length == 0){
-    numberOfContacts.classList.add('disappear')
-    table.classList.add('disappear')
-    divContact.append(noContact)
-    divContact.classList.add('newStyleDivContact')
-  }
-  else if(tabContacts.length >=1){
+function showHideContacts() {
+  if (tabContacts.length == 0) {
+    numberOfContacts.classList.add("disappear");
+    table.classList.add("disappear");
+    divContact.append(noContact);
+    divContact.classList.add("newStyleDivContact");
+  } else if (tabContacts.length >= 1) {
     //divCreateContact.remove();
-      
-      // divContact.append(numberOfContacts)
-      // mainSection.append(divContact);
-      noContact.classList.add('disappear')
-      table.classList.remove('disappear')
-      numberOfContacts.classList.remove('disappear')
-      divContact.classList.remove('newStyleDivContact')
-      
+
+    // divContact.append(numberOfContacts)
+    // mainSection.append(divContact);
+    noContact.classList.add("disappear");
+    table.classList.remove("disappear");
+    numberOfContacts.classList.remove("disappear");
+    divContact.classList.remove("newStyleDivContact");
   }
 }
 
-showHideContacts()
+function contactInfoToEdit(contact) {
+  divContact.remove();
+  mainSection.append(divCreateContact);
+
+  inputPrenom.value = contact.prenom;
+  inputNom.value = contact.nom;
+  inputEse.value = contact.Entreprise;
+  inputFonction.value = contact.Fonction;
+  inputEmail.value = contact.Email;
+  inputPhoneNumber.value = contact.PhoneNumber;
+
+  btnEnregistrer.textContent = 'Modifier';
+  btnEnregistrer.disabled = false;
+  btnEnregistrer.classList.remove("styleBtnEnregistrer");
+  btnEnregistrer.classList.add("newStyleBtnEnregistrer");
+  contactIndexToEdit = tabContacts.findIndex((c) => c == contact);
+}
+
+showHideContacts();

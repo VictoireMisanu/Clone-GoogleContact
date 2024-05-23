@@ -257,6 +257,8 @@ input[placeholder ="Créer un contact"]{
 .styleBtnEnregistrer{
     width: 15%;
     height: 70%;
+    color: white;
+    font-weight: 300;
     background-color: blue;
     border: none;
     border-radius: 15px;
@@ -531,4 +533,18 @@ th{
 
 .disappear{
     display: none;
+}
+
+.newStyleBtnEnregistrer{
+    width: 15%;
+    height: 70%;
+    font-weight: 300;
+    border: 2px solid blue;
+    border-radius: 15px;
+}
+
+.newStyleBtnEnregistrer:hover{
+    cursor: pointer;
+    background-color: blue;
+    color : white;
 }
