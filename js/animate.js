@@ -116,12 +116,12 @@ btnEnregistrer.classList.add("styleBtnEnregistrer");
 divCreatetContactHeader.append(arrowContainer, btnEnregistrer);
 
 const profilePic = document.createElement("img");
-profilePic.src = "/images/Contact.png";
+profilePic.src = "./images/Contact.png";
 profilePic.classList.add("round");
 
 const divInputPrenom = document.createElement("div");
 const iconPerson = document.createElement("img");
-iconPerson.src = "/images/bitcoin-icons--contacts-filled.png";
+iconPerson.src = "./images/bitcoin-icons--contacts-filled.png";
 const inputPrenom = document.createElement("input");
 inputPrenom.setAttribute("type", "text");
 inputPrenom.setAttribute("placeHolder", "Prenom");
@@ -142,7 +142,7 @@ divInputNom.append(inputNom);
 
 const divInputEse = document.createElement("div");
 const iconEse = document.createElement("img");
-iconEse.src = "/images/carbon--enterprise.png";
+iconEse.src = "./images/carbon--enterprise.png";
 const inputEse = document.createElement("input");
 inputEse.setAttribute("type", "text");
 inputEse.setAttribute("placeHolder", "Entreprise");
@@ -163,7 +163,7 @@ divInputFonction.append(inputFonction);
 
 const divInputEmail = document.createElement("div");
 const iconEmail = document.createElement("img");
-iconEmail.src = "/images/eva--email-outline.png";
+iconEmail.src = "./images/eva--email-outline.png";
 const inputEmail = document.createElement("input");
 inputEmail.setAttribute("type", "email");
 inputEmail.setAttribute("required", "required");
@@ -177,7 +177,7 @@ divInputEmail.append(iconEmail, inputEmail);
 const divAddEmailAddress = document.createElement("div");
 divAddEmailAddress.classList.add("divAddEmailAddressDimension");
 const plusEmail = document.createElement("img");
-plusEmail.src = "/images/plus.png";
+plusEmail.src = "./images/plus.png";
 plusEmail.classList.add("alignDimine");
 const emailTextContent = document.createElement("p");
 emailTextContent.textContent = "Ajouter une adresse Email";
@@ -209,7 +209,7 @@ inputPhoneNumber.setAttribute("type", "phone");
 inputPhoneNumber.setAttribute("placeHolder", "Téléphone");
 inputPhoneNumber.classList.add("inputPrenomDimension");
 const phoneIcon = document.createElement("img");
-phoneIcon.src = "/images/ic--round-phone.png";
+phoneIcon.src = "./images/ic--round-phone.png";
 phoneIcon.classList.add("alignDimine");
 divPhoneNumber.append(phoneIcon, flagContainer, inputPhoneNumber);
 
@@ -315,17 +315,17 @@ function showContacts(contacts) {
     const td3 = document.createElement("td");
     const td4 = document.createElement("td");
     const td5 = document.createElement("td");
-    const profilePhoto = document.createElement("img");
-    profilePhoto.src = "/images/Contact.png";
-    profilePhoto.classList.add("smaller");
-    td0.appendChild(profilePhoto);
-    td1.classList.add("bold");
+    const profilePhoto = document.createElement('img')
+    profilePhoto.src = './images/Contact.png'
+    profilePhoto.classList.add('smaller')
+    td0.appendChild(profilePhoto)
+    td1.classList.add('bold')
 
-    const divDeleteModify = document.createElement("div");
-    const btnDelete = document.createElement("img");
-    const btnModify = document.createElement("img");
-    btnDelete.src = "/images/material-symbols-light--delete-outline.png";
-    btnModify.src = "/images/mdi--pencil.png";
+  const divDeleteModify = document.createElement('div')
+  const btnDelete = document.createElement('img')
+  const btnModify = document.createElement('img')
+  btnDelete.src = './images/material-symbols-light--delete-outline.png'
+  btnModify.src = './images/mdi--pencil.png'
 
     btnDelete.classList.add("labelName");
     btnModify.classList.add("labelName");
@@ -456,7 +456,7 @@ btnCreateLabel.addEventListener("click", function () {
   const labelNumber = document.createElement("small");
   labelNumber.textContent = "0";
 
-  labelLogo.src = "/images/material-symbols-light--label.png";
+  labelLogo.src = "./images/material-symbols-light--label.png";
 
   labelContainer.classList.add("labels");
 

@@ -345,7 +345,7 @@ input[placeholder ="Créer un contact"]{
 }
 
 td{
-    text-align: center;
+    /* text-align: center; */
    /* padding: 2%; */
    font-size: 1.2rem;
    
